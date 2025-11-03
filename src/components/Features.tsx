@@ -31,7 +31,7 @@ export const Features = () => {
   ];
 
   return (
-    <section className="py-32 px-4 relative overflow-hidden">
+    <section id="features" className="py-32 px-4 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
       
       <div className="max-w-6xl mx-auto relative z-10">

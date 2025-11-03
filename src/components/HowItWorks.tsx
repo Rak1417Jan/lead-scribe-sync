@@ -26,7 +26,7 @@ export const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-32 px-4 relative overflow-hidden">
+    <section id="how-it-works" className="py-32 px-4 relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
       </div>

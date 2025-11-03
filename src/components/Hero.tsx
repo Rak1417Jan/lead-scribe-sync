@@ -3,7 +3,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />

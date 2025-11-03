@@ -4,7 +4,7 @@ import { Mail, Phone, Globe, ArrowRight } from "lucide-react";
 
 export const CTA = () => {
   return (
-    <section className="py-32 px-4 relative overflow-hidden">
+    <section id="contact" className="py-32 px-4 relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl" />
       </div>
