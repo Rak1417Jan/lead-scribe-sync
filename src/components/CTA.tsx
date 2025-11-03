@@ -20,18 +20,15 @@ export const CTA = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <a href="#contact">
-                <Button size="lg" className="text-lg px-8 py-6 group relative overflow-hidden glow-border">
-                  <span className="relative z-10 flex items-center">
-                    Get Partner Access
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-20 transition-opacity" />
+              <a
+                href="https://calendar.app.google/dwJzYEnihpjtkk2Q9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary/30 hover:border-primary backdrop-blur-sm">
+                  Book a Demo
                 </Button>
               </a>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary/30 hover:border-primary backdrop-blur-sm">
-                Schedule Demo
-              </Button>
             </div>
 
             <div className="pt-8 border-t border-primary/20">

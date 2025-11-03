@@ -48,24 +48,11 @@ export const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-20 transition-opacity" />
             </Button>
           </a>
-          <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary/30 hover:border-primary backdrop-blur-sm">
-            Watch Demo
-          </Button>
         </div>
+        
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 animate-fade-up" style={{ animationDelay: "0.6s" }}>
-          {[
-            { value: "67%", label: "Follow-ups never happen" },
-            { value: "85%", label: "Leads go cold in 48hrs" },
-            { value: "70%", label: "Time spent qualifying" }
-          ].map((stat, index) => (
-            <div key={index} className="p-6 rounded-xl bg-card/50 border border-primary/20 backdrop-blur-sm card-glow perspective-card hover:shadow-[0_0_40px_rgba(6,182,212,0.2)] transition-all duration-300">
-              <div className="text-4xl font-bold gradient-text mb-2">{stat.value}</div>
-              <div className="text-muted-foreground">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+        
+
       </div>
     </section>
   );

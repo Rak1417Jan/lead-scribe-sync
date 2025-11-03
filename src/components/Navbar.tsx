@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import favicon from "@/assets/favicon.ico";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,9 +31,7 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-              <span className="text-xl font-bold text-background">L</span>
-            </div>
+            <img src={favicon} alt="LexiPitch" className="w-10 h-10 rounded-lg" />
             <span className="text-xl font-bold gradient-text">LexiPitch</span>
           </div>
 

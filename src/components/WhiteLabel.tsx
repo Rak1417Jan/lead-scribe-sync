@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Rocket, DollarSign, Settings, FileText } from "lucide-react";
+import { SeeItInAction } from "@/components/SeeItInAction";
 
 export const WhiteLabel = () => {
+  const [openDemo, setOpenDemo] = useState(false);
   const coreFunctions = [
     "Autonomous inbound/outbound calling",
     "Lead qualification and meeting booking",
@@ -31,7 +34,7 @@ export const WhiteLabel = () => {
       icon: Rocket,
       title: "Deployment",
       points: [
-        "Live in weeks",
+        "Live in days",
         "No engineering team needed",
         "Pre-built CRM connectors"
       ]
@@ -42,7 +45,7 @@ export const WhiteLabel = () => {
     <section id="white-label" className="py-32 px-4 relative">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal>
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
               White-Label AI Sales Platform
             </h2>
@@ -50,6 +53,16 @@ export const WhiteLabel = () => {
               Deploy LexiPitch under your brand. You rebrand it, set pricing, own the clients. 
               We handle infrastructure and updates.
             </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary/30 hover:border-primary" onClick={() => setOpenDemo(true)}>
+                See it in action
+              </Button>
+              <a href="#contact">
+                <Button size="lg" className="text-lg px-8 py-6">
+                  Book a Demo
+                </Button>
+              </a>
+            </div>
           </div>
         </ScrollReveal>
 
@@ -59,8 +72,10 @@ export const WhiteLabel = () => {
             <h3 className="text-3xl font-bold mb-8 text-center">Core Functions</h3>
             <div className="grid md:grid-cols-2 gap-6">
               {coreFunctions.map((func, index) => (
-                <div key={index} className="flex items-start gap-4 p-6 rounded-xl bg-card border border-primary/10">
-                  <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <div key={index} className="group flex items-start gap-4 p-6 rounded-xl bg-card border border-primary/10 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)]">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 grid place-items-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                    <CheckCircle2 className="w-5 h-5 text-primary" />
+                  </div>
                   <span className="text-lg">{func}</span>
                 </div>
               ))}
@@ -74,9 +89,10 @@ export const WhiteLabel = () => {
             <h3 className="text-3xl font-bold mb-8 text-center">What's Included</h3>
             <div className="grid md:grid-cols-2 gap-6">
               {included.map((item, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 rounded-lg bg-background/50">
-                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                <div key={index} className="group relative flex items-start gap-3 p-5 rounded-lg border border-primary/10 bg-background/60 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-background/80">
+                  <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0 transition-transform duration-300 group-hover:scale-125" />
                   <span className="text-lg">{item}</span>
+                  <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
               ))}
             </div>
@@ -103,10 +119,16 @@ export const WhiteLabel = () => {
                   ))}
                 </ul>
                 {section.title === "Economics" && (
-                  <Button variant="outline" className="w-full mt-6 border-primary/20">
-                    <FileText className="w-4 h-4 mr-2" />
-                    View Cost Comparison Sheet
-                  </Button>
+                  <a
+                    href="https://docs.google.com/spreadsheets/d/12chaNBV_thdgAp17EGTjsi6_crf5p0KeAU7cTgjoRDc/edit?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" className="w-full mt-6 border-primary/20">
+                      <FileText className="w-4 h-4 mr-2" />
+                      View Cost Comparison Sheet
+                    </Button>
+                  </a>
                 )}
               </div>
             </ScrollReveal>
@@ -138,13 +160,11 @@ export const WhiteLabel = () => {
                   Book a Demo
                 </Button>
               </a>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary/20">
-                <FileText className="w-5 h-5 mr-2" />
-                View Cost Sheet
-              </Button>
+              
             </div>
           </div>
         </ScrollReveal>
+        <SeeItInAction open={openDemo} onClose={() => setOpenDemo(false)} />
       </div>
     </section>
   );

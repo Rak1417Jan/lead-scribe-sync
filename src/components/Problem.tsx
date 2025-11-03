@@ -50,16 +50,7 @@ export const Problem = () => {
           ))}
         </div>
 
-        <ScrollReveal delay={300}>
-          <div className="mt-16 p-8 rounded-2xl bg-destructive/10 border border-destructive/30 backdrop-blur-sm glow-border hover:shadow-[0_0_40px_rgba(239,68,68,0.15)] transition-all">
-            <div className="text-center">
-              <p className="text-2xl font-semibold mb-2">Real Impact:</p>
-              <p className="text-xl text-muted-foreground">
-                "I lost a <span className="text-destructive font-bold">₹1.25 crore deal</span> because I couldn't follow up."
-              </p>
-            </div>
-          </div>
-        </ScrollReveal>
+        
       </div>
     </section>
   );

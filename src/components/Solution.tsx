@@ -11,14 +11,6 @@ export const Solution = () => {
     "No manual coordination needed"
   ];
 
-  const workflow = [
-    { day: "1", action: "Email with application form", highlight: false },
-    { day: "2", action: "WhatsApp reminder", highlight: false },
-    { day: "4", action: "Form Submitted", subtitle: "Old reminders stop → New flow begins", highlight: true },
-    { day: "6", action: "AI voice call for payment", highlight: false },
-    { day: "8", action: "Team WhatsApp follow-up", highlight: false },
-  ];
-
   return (
     <section className="py-32 px-4 relative">
       <div className="max-w-6xl mx-auto">
@@ -39,7 +31,7 @@ export const Solution = () => {
           </div>
         </ScrollReveal>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="max-w-3xl mx-auto">
           <ScrollReveal delay={100}>
             <div className="space-y-6">
               {features.map((feature, index) => (
@@ -48,40 +40,6 @@ export const Solution = () => {
                   <span className="text-lg">{feature}</span>
                 </div>
               ))}
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={200}>
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/30 backdrop-blur-sm glow-border hover:shadow-[0_0_50px_rgba(6,182,212,0.2)] transition-all">
-              <h3 className="text-2xl font-bold mb-6 gradient-text">Example Workflow</h3>
-              <div className="space-y-4">
-                {workflow.map((step, index) => (
-                  <div 
-                    key={index} 
-                    className={`flex items-start gap-3 p-4 rounded-lg transition-all ${
-                      step.highlight 
-                        ? 'bg-primary/20 border border-primary/40' 
-                        : 'bg-background/30'
-                    }`}
-                  >
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold ${
-                      step.highlight 
-                        ? 'bg-primary/40 text-primary glow-border' 
-                        : 'bg-primary/20 text-muted-foreground'
-                    }`}>
-                      {step.day}
-                    </div>
-                    <div>
-                      <p className={`font-semibold ${step.highlight ? 'text-primary' : ''}`}>
-                        {step.day !== "4" ? `Day ${step.day}` : step.action}
-                      </p>
-                      <p className={step.highlight ? "text-primary text-sm" : "text-muted-foreground"}>
-                        {step.subtitle || (step.day !== "4" ? step.action : step.subtitle)}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </ScrollReveal>
         </div>
