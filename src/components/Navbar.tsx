@@ -47,7 +47,9 @@ export const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button size="sm">Get Started</Button>
+            <a href="#contact">
+              <Button size="sm">Get Started</Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -74,7 +76,9 @@ export const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button className="w-full">Get Started</Button>
+            <a href="#contact" onClick={() => setIsMenuOpen(false)}>
+              <Button className="w-full">Get Started</Button>
+            </a>
           </div>
         </div>
       )}

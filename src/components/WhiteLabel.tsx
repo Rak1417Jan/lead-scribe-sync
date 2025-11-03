@@ -132,10 +132,12 @@ export const WhiteLabel = () => {
               Book a technical demo for implementation details and cost modeling
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 py-6">
-                <Settings className="w-5 h-5 mr-2" />
-                Book a Demo
-              </Button>
+              <a href="#contact">
+                <Button size="lg" className="text-lg px-8 py-6">
+                  <Settings className="w-5 h-5 mr-2" />
+                  Book a Demo
+                </Button>
+              </a>
               <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary/20">
                 <FileText className="w-5 h-5 mr-2" />
                 View Cost Sheet
