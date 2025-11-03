@@ -28,7 +28,7 @@ export const Problem = () => {
         <ScrollReveal>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              The <span className="gradient-text">Problem</span>
+              The <span className="gradient-text glow-text">Problem</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Sales teams are drowning in tools that don't work together, losing deals every single day
@@ -39,8 +39,8 @@ export const Problem = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {problems.map((problem, index) => (
             <ScrollReveal key={index} delay={index * 100}>
-              <div className="p-8 rounded-2xl bg-card border border-primary/10 hover:border-primary/30 transition-all group">
-                <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="p-8 rounded-2xl bg-card/50 border border-primary/20 hover:border-primary/40 transition-all group backdrop-blur-sm card-glow perspective-card hover:shadow-[0_0_40px_rgba(6,182,212,0.15)]">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform glow-border">
                   <problem.icon className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4">{problem.title}</h3>
@@ -51,7 +51,7 @@ export const Problem = () => {
         </div>
 
         <ScrollReveal delay={300}>
-          <div className="mt-16 p-8 rounded-2xl bg-destructive/10 border border-destructive/20">
+          <div className="mt-16 p-8 rounded-2xl bg-destructive/10 border border-destructive/30 backdrop-blur-sm glow-border hover:shadow-[0_0_40px_rgba(239,68,68,0.15)] transition-all">
             <div className="text-center">
               <p className="text-2xl font-semibold mb-2">Real Impact:</p>
               <p className="text-xl text-muted-foreground">

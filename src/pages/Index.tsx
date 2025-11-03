@@ -6,18 +6,24 @@ import { Features } from "@/components/Features";
 import { WhiteLabel } from "@/components/WhiteLabel";
 import { HowItWorks } from "@/components/HowItWorks";
 import { CTA } from "@/components/CTA";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { GridBackground } from "@/components/GridBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <Problem />
-      <Solution />
-      <Features />
-      <WhiteLabel />
-      <HowItWorks />
-      <CTA />
+    <div className="min-h-screen relative">
+      <GridBackground />
+      <AnimatedBackground />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <Problem />
+        <Solution />
+        <Features />
+        <WhiteLabel />
+        <HowItWorks />
+        <CTA />
+      </div>
     </div>
   );
 };

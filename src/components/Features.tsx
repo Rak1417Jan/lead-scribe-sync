@@ -38,7 +38,7 @@ export const Features = () => {
         <ScrollReveal>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="gradient-text">Platform</span> Overview
+              <span className="gradient-text glow-text">Platform</span> Overview
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Everything you need to automate your sales process, unified in one intelligent platform
@@ -49,11 +49,11 @@ export const Features = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <ScrollReveal key={index} delay={index * 100}>
-              <div className="p-8 rounded-2xl bg-card border border-primary/10 hover:border-primary/30 transition-all group hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="p-8 rounded-2xl bg-card/50 border border-primary/20 hover:border-primary/40 transition-all group backdrop-blur-sm card-glow perspective-card hover:shadow-[0_0_50px_rgba(6,182,212,0.2)]">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all glow-border">
                   <feature.icon className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">{feature.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
               </div>
             </ScrollReveal>
