@@ -949,15 +949,15 @@ export const ROI = () => {
 
             {/* Rate Display - Same as in Gross Revenue ✅ */}
             <motion.div
-              className="p-3 rounded-xl bg-black/20 border border-emerald-400/20 text-emerald-300 text-xs mb-3"
+              className="p-4 rounded-xl bg-black/20 border border-emerald-400/20 text-emerald-300 text-sm mb-4"
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
             >
               <div className="flex items-center justify-between mb-2">
-                <div className="font-semibold">Your Rate to Clients</div>
+                <div className="font-bold text-base">Your Rate to Clients</div>
                 <motion.span
                   key={sellingPrice}
-                  className="font-mono font-bold text-emerald-300"
+                  className="font-mono font-bold text-emerald-300 text-xl"
                   initial={{ scale: 0.9 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
@@ -965,28 +965,30 @@ export const ROI = () => {
                   ₹{sellingPrice.toFixed(2)}/min
                 </motion.span>
               </div>
-              <div className="text-[10px] text-muted-foreground">
+              <div className="text-xs text-muted-foreground">
                 Base rate ₹{costPerMinute.toFixed(3)} × {markup.toFixed(1)} markup
               </div>
             </motion.div>
 
+
             {/* Profit Margin Preview */}
             <motion.div
-              className="p-3 rounded-xl bg-black/20 border border-emerald-400/20 text-emerald-300 text-xs flex items-center justify-between"
+              className="p-4 rounded-xl bg-black/20 border border-emerald-400/20 text-emerald-300 text-sm flex items-center justify-between"
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
             >
               <div>
-                <div className="font-semibold">Your Margin</div>
-                <div className="text-[10px] text-muted-foreground mt-0.5">
+                <div className="font-bold text-base">Your Margin</div>
+                <div className="text-xs text-muted-foreground mt-1">
                   Higher markup → Higher net profit
                 </div>
               </div>
 
+
               {/* ✅ Prevent Infinity & negative margin */}
               <motion.span
                 key={markup}
-                className="text-lg font-bold"
+                className="text-2xl font-bold text-emerald-300"
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
