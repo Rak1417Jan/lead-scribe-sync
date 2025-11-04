@@ -17,6 +17,7 @@ export const Navbar = () => {
 
   const navLinks = [
     { label: "Features", href: "#features" },
+    { label: "ROI", href: "#roi" },
     { label: "White-Label", href: "#white-label" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "Contact", href: "#contact" }
@@ -84,3 +85,4 @@ export const Navbar = () => {
     </nav>
   );
 };
+

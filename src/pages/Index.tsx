@@ -6,6 +6,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { CTA } from "@/components/CTA";
 import { GridBackground } from "@/components/GridBackground";
 import { ProblemSolution } from "@/components/ProblemSolution";
+import { ROI } from "@/components/ROI";
 
 const Index = () => {
   return (
@@ -15,10 +16,11 @@ const Index = () => {
         <Navbar />
         <Hero />
         <WhiteLabel />
+        <ROI />
+        <CTA />
         <ProblemSolution />
         <Features />
         <HowItWorks />
-        <CTA />
       </div>
     </div>
   );
