@@ -11,42 +11,42 @@ import confetti from 'canvas-confetti';
 
 // Pricing tiers in hours as per requirements (converted to minutes)
 const PRICING_TIERS = [
-  { 
-    minMinutes: 0, 
+  {
+    minMinutes: 0,
     maxMinutes: 119999, // 0 to 1999.98 hours
     minHours: 0,
-    rate: 2.675, 
-    label: "No Commitment" 
+    rate: 2.675,
+    label: "No Commitment"
   },
-  { 
+  {
     minMinutes: 120000, // 2000 hours
     maxMinutes: 599999, // 2000 to 9999.98 hours
     minHours: 2000,
-    rate: 2.45, 
-    label: "2000+ Hours" 
+    rate: 2.45,
+    label: "2000+ Hours"
   },
-  { 
+  {
     minMinutes: 600000, // 10000 hours
     maxMinutes: 2999999, // 10000 to 49999.98 hours
     minHours: 10000,
-    rate: 2.123, 
-    label: "10,000+ Hours" 
+    rate: 2.123,
+    label: "10,000+ Hours"
   },
-  { 
+  {
     minMinutes: 3000000, // 50000 hours and above
     maxMinutes: Infinity,
     minHours: 50000,
-    rate: 1.973, 
-    label: "50,000+ Hours" 
+    rate: 1.973,
+    label: "50,000+ Hours"
   }
 ];
 
 const getTierForMinutes = (minutes: number) => {
   // Find the tier where minutes fall between minMinutes and maxMinutes
-  const matchingTier = PRICING_TIERS.find(tier => 
+  const matchingTier = PRICING_TIERS.find(tier =>
     minutes >= tier.minMinutes && minutes <= tier.maxMinutes
   );
-  
+
   // Return the matching tier or the first tier if none match (shouldn't happen with proper ranges)
   return matchingTier || PRICING_TIERS[0];
 };
@@ -54,7 +54,7 @@ const getTierForMinutes = (minutes: number) => {
 // Animation variants for price changes
 const priceChangeVariants = {
   initial: { scale: 1, y: 0 },
-  pulse: { 
+  pulse: {
     scale: [1, 1.1, 1],
     y: [0, -5, 0],
     transition: { duration: 0.6 }
@@ -69,7 +69,7 @@ export const ROI = () => {
   // Convert minutes to hours for display and input
   const [hours, setHours] = useState<number>(2000); // Default to 2000 hours
   const minutes = useMemo(() => hours * 60, [hours]); // Convert to minutes for calculations
-  
+
   const [currentTier, setCurrentTier] = useState(getTierForMinutes(minutes));
   const [costPerMinute, setCostPerMinute] = useState<number>(2.675); // Start with no-commitment rate
   const [markup, setMarkup] = useState<number>(2.0); // partner sells at 2x by default
@@ -79,24 +79,24 @@ export const ROI = () => {
   // Track previous tier to detect changes
   const prevTierRef = useRef(currentTier);
   const isInitialMount = useRef(true);
-  
+
   // Update pricing tier when minutes change
   useEffect(() => {
     const newTier = getTierForMinutes(minutes);
-    
+
     // Always update the cost per minute to match the current tier
     setCostPerMinute(newTier.rate);
-    
+
     // Don't do anything else if tier hasn't changed
     if (newTier.minHours === currentTier.minHours) {
       return;
     }
-    
+
     // Only show confetti when moving to a higher tier (lower rate)
     // and it's not the initial mount
     if (newTier.rate < currentTier.rate && !isInitialMount.current) {
       setShowPriceDrop(true);
-      
+
       // More noticeable confetti
       confetti({
         particleCount: 150,
@@ -106,20 +106,20 @@ export const ROI = () => {
         colors: ['#06b6d4', '#3b82f6', '#8b5cf6'],
         ticks: 100,
       });
-      
+
       const timer = setTimeout(() => setShowPriceDrop(false), 2000);
-      
+
       // Update the current tier
       setPrevTier(currentTier);
       setCurrentTier(newTier);
-      
+
       return () => clearTimeout(timer);
     } else {
       // Update the tier without animation
       setPrevTier(currentTier);
       setCurrentTier(newTier);
     }
-    
+
     // Mark initial mount as complete
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -160,7 +160,7 @@ export const ROI = () => {
                     <span className="font-medium">✓</span> One-time payment included in first year
                   </div>
                 </div>
-                
+
                 {/* Annual Charge */}
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
                   <div className="text-slate-600 text-sm font-medium mb-1">Annual Charge</div>
@@ -170,7 +170,7 @@ export const ROI = () => {
                   </div>
                 </div>
               </div>
-              
+
               <p className="text-sm text-muted-foreground text-center max-w-2xl">
                 No per-minute commitments • Scale up or down anytime • Cancel anytime
               </p>
@@ -233,7 +233,7 @@ export const ROI = () => {
                 <div>
                   <div className="text-sm font-medium">Current Tier</div>
                   <div className="text-xs text-muted-foreground">
-                    {currentTier.minHours > 0 
+                    {currentTier.minHours > 0
                       ? `${currentTier.minHours.toLocaleString()}+ hours`
                       : 'No commitment'}
                   </div>
@@ -248,7 +248,7 @@ export const ROI = () => {
             </div>
           </div>
 
-            <div className="p-6 rounded-2xl bg-card/60 border border-primary/20 backdrop-blur-sm">
+          <div className="p-6 rounded-2xl bg-card/60 border border-primary/20 backdrop-blur-sm">
             <div className="flex flex-col gap-2 mb-3">
               <div className="flex items-center justify-between">
                 <Label htmlFor="cost" className="text-sm font-semibold">Price per Minute</Label>
@@ -258,7 +258,7 @@ export const ROI = () => {
                 </div>
               </div>
               <p className="text-xs text-muted-foreground">
-                {currentTier.minHours > 0 
+                {currentTier.minHours > 0
                   ? `At ${currentTier.minHours.toLocaleString()}+ hours`
                   : 'No commitment required'}
               </p>
@@ -283,7 +283,7 @@ export const ROI = () => {
               </div>
               <AnimatePresence>
                 {showPriceDrop && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
@@ -299,16 +299,15 @@ export const ROI = () => {
               <h4 className="text-sm font-medium">Pricing Tiers:</h4>
               <div className="grid gap-2">
                 {PRICING_TIERS.map((tier, i) => (
-                  <div 
+                  <div
                     key={i}
-                    className={`flex items-center justify-between p-2 rounded-md text-sm ${
-                      currentTier.label === tier.label 
-                        ? 'bg-primary/10 border border-primary/20' 
+                    className={`flex items-center justify-between p-2 rounded-md text-sm ${currentTier.label === tier.label
+                        ? 'bg-primary/10 border border-primary/20'
                         : 'bg-muted/50'
-                    }`}
+                      }`}
                   >
                     <span className="font-medium">
-                      {tier.minHours > 0 
+                      {tier.minHours > 0
                         ? `${tier.minHours.toLocaleString()}+ hours`
                         : 'No commitment'}
                     </span>
@@ -319,18 +318,80 @@ export const ROI = () => {
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-card/60 border border-primary/20 backdrop-blur-sm">
-            <Label htmlFor="markup" className="text-sm font-semibold mb-2 block">Your Markup (x)</Label>
-            <Input
-              id="markup"
-              type="number"
-              value={markup}
-              min={1}
-              step={0.1}
-              onChange={(e) => setMarkup(Number(e.target.value || 0))}
-            />
-            <div className="mt-3 text-xs text-muted-foreground">Example: we charge x, you charge 2x to clients.</div>
+          {/* MARKUP CARD - FINAL FIXED ✅ */}
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-950/40 to-blue-900/20 border border-blue-500/20 backdrop-blur-lg shadow-lg relative overflow-hidden">
+            {/* Glow accents */}
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
+
+            <div className="flex items-center justify-between mb-4">
+              <Label
+                htmlFor="markup"
+                className="text-lg font-bold text-white tracking-wide"
+              >
+                Your Markup (x)
+              </Label>
+              <div className="flex items-center gap-1 text-xs bg-emerald-400/20 text-emerald-300 px-2 py-1 rounded-full">
+                <Sparkles className="w-3 h-3" />
+                Profit Engine
+              </div>
+            </div>
+
+            {/* Markup Input */}
+            <div className="relative mb-4">
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-lg font-semibold">
+                ×
+              </div>
+              <Input
+                id="markup"
+                type="number"
+                value={markup}
+                min={1}
+                step={0.1}
+                onChange={(e) => {
+                  const value = Number(e.target.value);
+                  if (!value || value < 1) {
+                    setMarkup(1); // ✅ Prevent 0 or negative markup
+                  } else {
+                    setMarkup(value);
+                  }
+                }}
+                className="font-mono text-3xl font-bold text-emerald-400 bg-black/30 pl-8 h-16 rounded-xl border-emerald-400/30"
+              />
+            </div>
+
+            <p className="text-xs text-muted-foreground mb-3">
+              You charge this multiplier to your clients.
+            </p>
+
+            {/* Profit Margin Preview */}
+            <motion.div
+              className="p-3 rounded-xl bg-black/20 border border-emerald-400/20 text-emerald-300 text-xs flex items-center justify-between"
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <div>
+                <div className="font-semibold">Your Margin</div>
+                <div className="text-[10px] text-muted-foreground mt-0.5">
+                  Higher markup → Higher net profit
+                </div>
+              </div>
+
+              {/* ✅ Prevent Infinity & negative margin */}
+              <motion.span
+                key={markup}
+                className="text-lg font-bold"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              >
+                {markup <= 1
+                  ? "0%"
+                  : `${(((markup - 1) / markup) * 100).toFixed(0)}%`}
+              </motion.span>
+            </motion.div>
           </div>
+
         </div>
 
         {/* Highlight at 1L */}
@@ -343,9 +404,9 @@ export const ROI = () => {
 
         <div className="grid lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {/* Revenue */}
-          <motion.div 
+          <motion.div
             className="relative overflow-hidden p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 backdrop-blur-sm"
-            whileHover={{ 
+            whileHover={{
               scale: 1.02,
               boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
             }}
@@ -353,18 +414,18 @@ export const ROI = () => {
           >
             {/* Animated background elements */}
             <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-primary/5 blur-xl"></div>
-            
+
             <div className="relative z-10">
               <div className="flex items-center justify-between">
                 <div className="text-sm font-medium tracking-wide text-primary/80">
                   GROSS REVENUE
                 </div>
                 <motion.div
-                  animate={{ 
+                  animate={{
                     rotate: [0, 5, -5, 0],
                     scale: [1, 1.1, 1]
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 2,
                     repeat: Infinity,
                     repeatType: "reverse"
@@ -373,8 +434,8 @@ export const ROI = () => {
                   <TrendingUp className="w-5 h-5 text-primary" />
                 </motion.div>
               </div>
-              
-              <motion.div 
+
+              <motion.div
                 key={`revenue-${grossRevenue}`}
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -383,8 +444,8 @@ export const ROI = () => {
               >
                 {formatINR(grossRevenue)}
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="mt-3 p-2 bg-primary/5 rounded-lg border border-primary/10"
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -406,9 +467,9 @@ export const ROI = () => {
                 </div>
               </motion.div>
             </div>
-            
+
             {/* Subtle animated border effect */}
-            <motion.div 
+            <motion.div
               className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
@@ -427,26 +488,25 @@ export const ROI = () => {
           </div>
 
           {/* Profit */}
-          <motion.div 
-            className={`relative overflow-hidden p-6 rounded-2xl border backdrop-blur-sm ${
-              netProfit >= 0 
-                ? "bg-gradient-to-br from-emerald-500/5 to-emerald-600/10 border-emerald-400/30" 
+          <motion.div
+            className={`relative overflow-hidden p-6 rounded-2xl border backdrop-blur-sm ${netProfit >= 0
+                ? "bg-gradient-to-br from-emerald-500/5 to-emerald-600/10 border-emerald-400/30"
                 : "bg-gradient-to-br from-rose-500/5 to-rose-600/10 border-rose-400/30"
-            }`}
+              }`}
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             {/* Animated background elements */}
-            <div className="absolute -right-4 -top-4 w-20 h-20 rounded-full opacity-10 blur-xl" 
-                 style={{ background: netProfit >= 0 ? '#10b981' : '#f43f5e' }}>
+            <div className="absolute -right-4 -top-4 w-20 h-20 rounded-full opacity-10 blur-xl"
+              style={{ background: netProfit >= 0 ? '#10b981' : '#f43f5e' }}>
             </div>
-            
+
             <div className="relative z-10">
               <div className="flex items-center justify-between">
                 <div className="text-sm font-medium tracking-wide uppercase text-muted-foreground">
                   Net Profit
                 </div>
-                <motion.div 
+                <motion.div
                   animate={{ rotate: netProfit >= 0 ? 0 : 180 }}
                   transition={{ type: 'spring', stiffness: 500 }}
                 >
@@ -457,29 +517,27 @@ export const ROI = () => {
                   )}
                 </motion.div>
               </div>
-              
-              <motion.div 
+
+              <motion.div
                 key={netProfit}
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className={`mt-2 text-4xl font-bold tracking-tight ${
-                  netProfit >= 0 ? 'text-emerald-400' : 'text-rose-400'
-                }`}
+                className={`mt-2 text-4xl font-bold tracking-tight ${netProfit >= 0 ? 'text-emerald-400' : 'text-rose-400'
+                  }`}
               >
                 {formatINR(netProfit)}
               </motion.div>
-              
-              <motion.div 
-                className={`mt-2 text-xs font-medium ${
-                  netProfit >= 0 ? 'text-emerald-400/80' : 'text-rose-400/80'
-                }`}
+
+              <motion.div
+                className={`mt-2 text-xs font-medium ${netProfit >= 0 ? 'text-emerald-400/80' : 'text-rose-400/80'
+                  }`}
               >
                 {netProfit >= 0 ? '✓ Profitable' : 'Adjust to increase profit'}
               </motion.div>
-              
+
               {/* Subtle animated border effect */}
-              <motion.div 
+              <motion.div
                 className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-current to-transparent"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.3 }}

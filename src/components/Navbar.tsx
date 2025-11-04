@@ -16,9 +16,9 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: "Features", href: "#features" },
-    { label: "ROI", href: "#roi" },
     { label: "White-Label", href: "#white-label" },
+    { label: "ROI", href: "#roi" },
+    { label: "Features", href: "#features" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "Contact", href: "#contact" }
   ];

@@ -55,9 +55,9 @@ export const WhiteLabel = () => {
               We handle infrastructure and updates.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary/30 hover:border-primary" onClick={() => setOpenDemo(true)}>
+              {/* <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary/30 hover:border-primary" onClick={() => setOpenDemo(true)}>
                 See it in action
-              </Button>
+              </Button> */}
               <a href="#contact">
                 <Button size="lg" className="text-lg px-8 py-6">
                   Book a Demo
@@ -151,7 +151,7 @@ export const WhiteLabel = () => {
         </ScrollReveal>
 
         {/* CTA */}
-        <ScrollReveal delay={350}>
+        {/* <ScrollReveal delay={350}>
           <div className="mt-16 text-center">
             <h3 className="text-3xl font-bold mb-6">Ready to Get Started?</h3>
             <p className="text-lg text-muted-foreground mb-8">
@@ -168,7 +168,7 @@ export const WhiteLabel = () => {
             </div>
           </div>
         </ScrollReveal>
-        <SeeItInAction open={openDemo} onClose={() => setOpenDemo(false)} />
+        <SeeItInAction open={openDemo} onClose={() => setOpenDemo(false)} /> */}
       </div>
     </section>
   );
