@@ -185,7 +185,7 @@ export const ROI = () => {
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
               Transparent economics your CFO will love. One-time setup {formatINR(setupFee)} and annual {formatINR(annualFee)}.
-              Slide minutes to see how margins scale — at 1 lakh minutes, fayda compounding hai.
+              Slide minutes to see how margins scale — at 100,000 minutes, the benefits start compounding.
             </p>
           </div>
         </ScrollReveal>
