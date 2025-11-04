@@ -35,15 +35,6 @@ export const CTA = () => {
               <p className="text-sm text-muted-foreground mb-4 font-semibold">Contact Us</p>
               <div className="flex flex-wrap justify-center gap-6 text-sm">
                 <a 
-                  href="https://partners.lexipitch.com" 
-                  className="flex items-center gap-2 hover:text-primary transition-all group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Globe className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                  partners.lexipitch.com
-                </a>
-                <a 
                   href="mailto:naman@lexipitch.com" 
                   className="flex items-center gap-2 hover:text-primary transition-all group"
                 >

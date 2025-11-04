@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
@@ -65,7 +65,7 @@ export const ROI = () => {
 
   // Convert minutes to hours for display and input
   const [hours, setHours] = useState<number>(2000); // Default to 2000 hours
-  const minutes = hours * 60; // Convert to minutes for calculations
+  const minutes = useMemo(() => hours * 60, [hours]); // Convert to minutes for calculations
   
   const [currentTier, setCurrentTier] = useState(getTierForMinutes(minutes));
   const [costPerMinute, setCostPerMinute] = useState<number>(2.675); // Start with no-commitment rate
@@ -73,33 +73,56 @@ export const ROI = () => {
   const [showPriceDrop, setShowPriceDrop] = useState(false);
   const [prevTier, setPrevTier] = useState(currentTier);
 
-  // Update pricing tier when hours change
+  // Track previous tier to detect changes
+  const prevTierRef = useRef(currentTier);
+  const isInitialMount = useRef(true);
+  
+  // Update pricing tier when minutes change
   useEffect(() => {
     const newTier = getTierForMinutes(minutes);
     
-    // Only update if tier actually changed
-    if (currentTier.minHours !== newTier.minHours) {
-      // Show animation if moving to a higher tier (lower rate)
-      if (newTier.rate < currentTier.rate) {
-        setShowPriceDrop(true);
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#06b6d4', '#3b82f6', '#8b5cf6'],
-        });
-        
-        const timer = setTimeout(() => setShowPriceDrop(false), 2000);
-        return () => clearTimeout(timer);
-      }
+    // Don't do anything if tier hasn't changed
+    if (newTier.minHours === currentTier.minHours) {
+      setCostPerMinute(newTier.rate);
+      return;
+    }
+    
+    // Only show confetti when moving to a higher tier (lower rate)
+    // and it's not the initial mount
+    if (newTier.rate < currentTier.rate && !isInitialMount.current) {
+      setShowPriceDrop(true);
       
+      // More noticeable confetti
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        startVelocity: 30,
+        origin: { y: 0.6 },
+        colors: ['#06b6d4', '#3b82f6', '#8b5cf6'],
+        ticks: 100,
+      });
+      
+      const timer = setTimeout(() => setShowPriceDrop(false), 2000);
+      
+      // Update the current tier
+      setPrevTier(currentTier);
+      setCurrentTier(newTier);
+      
+      return () => clearTimeout(timer);
+    } else {
+      // Update the tier without animation
       setPrevTier(currentTier);
       setCurrentTier(newTier);
     }
     
-    // Always update the rate to match the current tier
+    // Update the rate to match the current tier
     setCostPerMinute(newTier.rate);
-  }, [minutes, hours]);
+    
+    // Mark initial mount as complete
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    }
+  }, [minutes]);
 
   const sellingPrice = useMemo(() => costPerMinute * markup, [costPerMinute, markup]);
 
@@ -133,13 +156,13 @@ export const ROI = () => {
                 <div className="relative p-4 rounded-xl bg-gradient-to-br from-amber-50 to-amber-50/80 border border-amber-200/60 shadow-sm">
                   <div className="absolute -top-2 -right-2">
                     <div className="bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                      ONE TIME ONLY
+                      FIRST YEAR INCLUDED
                     </div>
                   </div>
                   <div className="text-amber-700 text-sm font-medium mb-1">One-time Setup</div>
                   <div className="text-2xl font-bold text-amber-900">₹75,000</div>
                   <div className="mt-2 text-xs text-amber-600">
-                    <span className="font-medium">✓</span> Pay once, benefit forever
+                    <span className="font-medium">✓</span> One-time payment included in first year
                   </div>
                 </div>
                 
@@ -148,7 +171,7 @@ export const ROI = () => {
                   <div className="text-slate-600 text-sm font-medium mb-1">Annual Charge</div>
                   <div className="text-2xl font-bold text-slate-900">₹30,000<span className="text-sm font-normal text-slate-500">/year</span></div>
                   <div className="mt-2 text-xs text-slate-500">
-                    <span className="font-medium">✓</span> Billed annually, cancel anytime
+                    <span className="font-medium">✓</span> Applicable from second year onwards
                   </div>
                 </div>
               </div>
@@ -179,7 +202,12 @@ export const ROI = () => {
                     min={0}
                     max={100000} // 100K hours max
                     step={100}
-                    onValueChange={(v) => setHours(v[0])}
+                    onValueChange={(v) => {
+                      // Only update if the value actually changes
+                      if (v[0] !== hours) {
+                        setHours(v[0]);
+                      }
+                    }}
                   />
                   <div className="flex justify-between text-xs text-muted-foreground px-1">
                     <span>0 Hours</span>

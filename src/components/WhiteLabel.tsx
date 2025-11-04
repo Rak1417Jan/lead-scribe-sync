@@ -3,6 +3,7 @@ import { ScrollReveal } from "./ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Rocket, DollarSign, Settings, FileText } from "lucide-react";
 import { SeeItInAction } from "@/components/SeeItInAction";
+import { ROI } from "./ROI";
 
 export const WhiteLabel = () => {
   const [openDemo, setOpenDemo] = useState(false);
@@ -82,6 +83,9 @@ export const WhiteLabel = () => {
             </div>
           </div>
         </ScrollReveal>
+
+        {/* ROI Calculator */}
+        <ROI />
 
         {/* What's Included */}
         <ScrollReveal delay={150}>
