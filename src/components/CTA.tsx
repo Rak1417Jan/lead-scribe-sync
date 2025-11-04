@@ -35,11 +35,11 @@ export const CTA = () => {
               <p className="text-sm text-muted-foreground mb-4 font-semibold">Contact Us</p>
               <div className="flex flex-wrap justify-center gap-6 text-sm">
                 <a 
-                  href="mailto:naman@lexipitch.com" 
+                  href="mailto:naman@stellarframes.com" 
                   className="flex items-center gap-2 hover:text-primary transition-all group"
                 >
                   <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                  naman@lexipitch.com
+                  naman@stellarframes.com
                 </a>
                 <a 
                   href="tel:+919079243628" 
