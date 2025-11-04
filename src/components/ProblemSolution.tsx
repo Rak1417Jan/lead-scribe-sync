@@ -32,7 +32,7 @@ export const ProblemSolution = () => {
   ];
 
   return (
-    <section className="py-24 px-4 relative">
+    <section className="px-4 relative">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-10 items-start">
           {/* Problem */}

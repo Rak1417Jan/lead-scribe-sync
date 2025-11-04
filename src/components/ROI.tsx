@@ -943,7 +943,7 @@ export const ROI = () => {
               />
             </div>
 
-            <p className="text-xs text-muted-foreground mb-3">
+            <p className="text-sm text-muted-foreground mb-3">
               You charge this multiplier to your clients.
             </p>
 

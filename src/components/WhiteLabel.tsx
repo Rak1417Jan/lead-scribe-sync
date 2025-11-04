@@ -142,7 +142,7 @@ export const WhiteLabel = () => {
         {/* Commercial Logic */}
         <ScrollReveal delay={300}>
           <div className="p-8 rounded-2xl bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 text-center">
-            <h3 className="text-2xl font-bold mb-4">Commercial Logic</h3>
+            <h3 className="text-2xl font-bold">Commercial Logic</h3>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Your clients need AI calling automation. Building internally is expensive and time-consuming. 
               White-labeling gives you immediate market access with full revenue and relationship control.
