@@ -7,7 +7,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   GAR_LOCATION: asia-south1
-  SERVICE_BASE_NAME: call-scheduler
+  SERVICE_BASE_NAME: sales-whitelabel-infrastructure
 
 jobs:
   # Determine environment based on branch
